@@ -7,6 +7,8 @@
 #
 #
 # Parameters:
+# * $build_pkgs:  - Packages which are required to build the compiler toolchain
+#
 #
 # Actions:
 #
@@ -14,10 +16,12 @@
 #
 # Sample Usage:
 #
-class perlbrew::install {
-  package {
-    'build-essential':
-      ensure => present,
+class perlbrew::install (
+  $build_pkgs = $perlbrew::params::build_pkgs,
+) inherits perlbrew::params {
+
+  package { [ $build_pkgs ]:
+    ensure => present,
   }
 
   package {
@@ -31,6 +35,6 @@ class perlbrew::install {
       group   => root,
       mode    => '0755',
       source  => "puppet:///modules/${module_name}/perlbrew",
-      require => [ Package['build-essential'], Package['wget'] ],
   }
+
 }

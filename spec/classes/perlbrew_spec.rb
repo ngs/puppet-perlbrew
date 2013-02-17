@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe 'perlbrew' do
-          it { should include_class('perlbrew') }
+
+  let :facts do
+    { :osfamily => 'Debian' }
+  end
+
+  it { should include_class('perlbrew') }
+
 end
