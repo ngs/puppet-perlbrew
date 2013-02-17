@@ -5,6 +5,7 @@ script: "rake spec_prep spec"
 branches:
   only:
     - master
+    - multivendor
 env:
   - PUPPET_VERSION=2.6.17
   - PUPPET_VERSION=2.7.19
